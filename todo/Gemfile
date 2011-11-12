@@ -38,3 +38,5 @@ end
 gem 'rails-backbone'
 gem 'jasminerice'
 gem 'guard-jasmine'
+
+gem 'rspec-rails'

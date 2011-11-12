@@ -1,0 +1,49 @@
+<h1>Listing items</h1>
+
+<table>
+  <tr>
+    <th>Text</th>
+    <th>Done</th>
+    <th>Order</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @items.each do |item| %>
+  <tr>
+    <td><%= item.text %></td>
+    <td><%= item.done %></td>
+    <td><%= item.order %></td>
+    <td><%= link_to 'Show', item %></td>
+    <td><%= link_to 'Edit', edit_item_path(item) %></td>
+    <td><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Item', new_item_path %>
+
+<hr />
+
+<div id="todoapp">
+  <div class="content">
+    <div id="create-todo">
+      <input id="new-todo" placeholder="What needs to be done?" type="text" />
+      <span class="ui-tooltip-top" style="display:none;">Press Enter to save this task</span>
+    </div>
+    <div id="todos">
+      <ul id="todo-list"></ul>
+    </div>
+    <div id="todo-stats"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    view = new Todo.Views.AppView
+    view.render()
+  });
+</script>

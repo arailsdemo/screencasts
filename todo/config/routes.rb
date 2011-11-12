@@ -1,5 +1,7 @@
 Todo::Application.routes.draw do
 
+  resources :items
+
   if ["development", "test"].include? Rails.env
       mount Jasminerice::Engine => "/jasmine"
   end
