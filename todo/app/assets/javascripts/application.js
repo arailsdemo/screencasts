@@ -10,5 +10,6 @@
 //= require backbone
 //= require backbone_rails_sync
 //= require backbone_datalink
+//= require backbone/vendor/backbone-localstorage
 //= require backbone/todo
 //= require_tree .
