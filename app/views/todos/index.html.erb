@@ -1,0 +1,36 @@
+<h1>Listing todos</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Done</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @todos.each do |todo| %>
+  <tr>
+    <td><%= todo.title %></td>
+    <td><%= todo.done %></td>
+    <td><%= link_to 'Show', todo %></td>
+    <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
+    <td><%= link_to 'Destroy', todo, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Todo', new_todo_path %>
+
+<hr />
+
+<script type="text/x-handlebars">
+  {{view Todos.CreateTodoView id="new-todo" placeholder="What needs to be done?"}}
+
+  {{#collection contentBinding="Todos.todosController" tagName="ul" itemClassBinding="content.isDone"}}
+    {{view Em.Checkbox titleBinding="content.title" valueBinding="content.isDone"}}
+  {{/collection}}
+</script>
+
