@@ -12,7 +12,7 @@
 <% @todos.each do |todo| %>
   <tr>
     <td><%= todo.title %></td>
-    <td><%= todo.done %></td>
+    <td><%= todo.isDone %></td>
     <td><%= link_to 'Show', todo %></td>
     <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
     <td><%= link_to 'Destroy', todo, confirm: 'Are you sure?', method: :delete %></td>
@@ -29,8 +29,32 @@
 <script type="text/x-handlebars">
   {{view Todos.CreateTodoView id="new-todo" placeholder="What needs to be done?"}}
 
+  {{#view Todos.StatsView id="stats"}}
+    {{#view Em.Button
+      target="Todos.store"
+      action="commit"}}
+      Commit Data To Rails
+    {{/view}}
+
+    {{#view Em.Button classBinding="isActive"
+      target="Todos.todosController"
+      action="clearCompletedTodos"}}
+      Clear Completed Todos
+    {{/view}}
+    {{remainingString}} remaining
+  {{/view}}
+
+  {{view Em.Checkbox class="mark-all-done"
+    title="Mark All As Done"
+    valueBinding="Todos.todosController.allAreDone"}}
+
   {{#collection contentBinding="Todos.todosController" tagName="ul" itemClassBinding="content.isDone"}}
     {{view Em.Checkbox titleBinding="content.title" valueBinding="content.isDone"}}
   {{/collection}}
+
+  {{#collection contentBinding="Todos.dbTodos" tagName="ul"}}
+    {{content.title}}
+  {{/collection}}
 </script>
+
 

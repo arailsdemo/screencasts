@@ -6,7 +6,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @todos }
+      format.json { render json: {todos: @todos} }
     end
   end
 
@@ -45,7 +45,7 @@ class TodosController < ApplicationController
     respond_to do |format|
       if @todo.save
         format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
-        format.json { render json: @todo, status: :created, location: @todo }
+        format.json { render json: {:todo => @todo}, status: :created, location: @todo }
       else
         format.html { render action: "new" }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
